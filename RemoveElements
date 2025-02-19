@@ -1,0 +1,18 @@
+struct ListNode* removeElements(struct ListNode* head, int val) {
+   
+    struct ListNode *temp = (struct ListNode*)malloc(sizeof(struct ListNode)); //allocate space for temp pointer node
+    
+    temp->next = head; //set pointer for temp->next to head pointer
+
+    struct ListNode *node = temp;               //node is a dummy node to be inserted before list head
+    while(node->next != NULL){                  //while loop to iterate through list
+        if(node->next->val ==val){              //if the next nodes val is equal to the val we are looking for
+            node->next = node->next->next;      //set next of node to next of next which is NULL and deletes from list
+        }
+        else{
+            node = node->next;                  //else then iterate to next node
+        }
+    }
+    return temp->next; 
+  free(temp);                                   //Release memory
+}
